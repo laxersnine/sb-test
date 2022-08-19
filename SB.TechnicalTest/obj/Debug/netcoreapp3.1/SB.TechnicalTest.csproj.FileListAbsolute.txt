@@ -1,0 +1,14 @@
+/Users/Davis/Downloads/SB.TechnicalTest/bin/Debug/netcoreapp3.1/SB.TechnicalTest.deps.json
+/Users/Davis/Downloads/SB.TechnicalTest/bin/Debug/netcoreapp3.1/SB.TechnicalTest.runtimeconfig.json
+/Users/Davis/Downloads/SB.TechnicalTest/bin/Debug/netcoreapp3.1/SB.TechnicalTest.runtimeconfig.dev.json
+/Users/Davis/Downloads/SB.TechnicalTest/bin/Debug/netcoreapp3.1/SB.TechnicalTest.dll
+/Users/Davis/Downloads/SB.TechnicalTest/bin/Debug/netcoreapp3.1/SB.TechnicalTest.pdb
+/Users/Davis/Downloads/SB.TechnicalTest/bin/Debug/netcoreapp3.1/SB.CoreTest.dll
+/Users/Davis/Downloads/SB.TechnicalTest/obj/Debug/netcoreapp3.1/SB.TechnicalTest.csprojAssemblyReference.cache
+/Users/Davis/Downloads/SB.TechnicalTest/obj/Debug/netcoreapp3.1/SB.TechnicalTest.AssemblyInfoInputs.cache
+/Users/Davis/Downloads/SB.TechnicalTest/obj/Debug/netcoreapp3.1/SB.TechnicalTest.AssemblyInfo.cs
+/Users/Davis/Downloads/SB.TechnicalTest/obj/Debug/netcoreapp3.1/SB.TechnicalTest.csproj.CoreCompileInputs.cache
+/Users/Davis/Downloads/SB.TechnicalTest/obj/Debug/netcoreapp3.1/SB.TechnicalTest.csproj.CopyComplete
+/Users/Davis/Downloads/SB.TechnicalTest/obj/Debug/netcoreapp3.1/SB.TechnicalTest.dll
+/Users/Davis/Downloads/SB.TechnicalTest/obj/Debug/netcoreapp3.1/SB.TechnicalTest.pdb
+/Users/Davis/Downloads/SB.TechnicalTest/obj/Debug/netcoreapp3.1/SB.TechnicalTest.genruntimeconfig.cache

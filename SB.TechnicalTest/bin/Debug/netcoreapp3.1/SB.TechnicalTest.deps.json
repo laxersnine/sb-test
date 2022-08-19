@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "SB.TechnicalTest/1.0.0": {
+        "dependencies": {
+          "SB.CoreTest": "1.0.0.0"
+        },
+        "runtime": {
+          "SB.TechnicalTest.dll": {}
+        }
+      },
+      "SB.CoreTest/1.0.0.0": {
+        "runtime": {
+          "SB.CoreTest.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SB.TechnicalTest/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SB.CoreTest/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
