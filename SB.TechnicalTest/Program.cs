@@ -36,6 +36,7 @@ namespace SB.TechnicalTest
 
             Console.WriteLine($"Attempt 2 Highest Safe Floor: {Attempt2()}");
             Console.WriteLine($"Attempt 2 Total Drops: {Building.TotalDrops}");
+            Console.WriteLine("Finish");
         }
 
         /// <summary>
