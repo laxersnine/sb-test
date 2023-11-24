@@ -1,4 +1,5 @@
 import asyncio
+import os
 from gql import gql, Client
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError
