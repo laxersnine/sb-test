@@ -1,0 +1,23 @@
+name: Auto Sync release branch
+on:
+  pull_request:
+    branches: release/*
+    types:
+      - closed
+
+jobs:
+  process_sync:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip' # caching pip dependencies
+      - name: Install python packages
+        run: pip install -r .github/workflows/auto_sync_release_branch/requirements.txt
+      - name: Execute py script
+        run: python .github/workflows/auto_sync_release_branch/main.py
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
