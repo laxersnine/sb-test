@@ -10,6 +10,10 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
       - name: Setup python
         uses: actions/setup-python@v4
         with:
@@ -21,3 +25,10 @@ jobs:
         run: python .github/workflows/auto_sync_release_branch/main.py
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_MERGED_BRANCH: ${{ github.event.pull_request.base.ref }}
+          JIRA_ACCOUNT: ${{ secrets.JIRA_ACCOUNT }}
+          JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
+          JIRA_URL: ${{ secrets.JIRA_URL }}
+          REPO_NAME: sb-test
+          REPO_OWNER: laxersnine
+          TRIGGERED_BY: ${{ format('{0} - pr#{1}', github.event.pull_request.merged_by.name, github.event.pull_request.number) }}
