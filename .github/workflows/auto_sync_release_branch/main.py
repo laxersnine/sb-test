@@ -211,6 +211,7 @@ async def approve_pull_request(client, params, pull_request):
     await client.execute(approve_pull_request_query, variable_values = p)
 
 async def merge_pull_request(client, params, pull_request):
+    await approve_pull_request(client, params, pull_request)
     p = params.copy()
     p["pullRequestId"] = pull_request["id"]
     merge_pull_request_query = gql(
