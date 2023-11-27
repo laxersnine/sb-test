@@ -213,7 +213,12 @@ async def approve_pull_request(client, params, pull_request):
 
 async def merge_pull_request(client, params, pull_request):
     #gh pr merge pull_request["url"] --merge --admin -d
-    subprocess.run(["gh", "pr", "merge", pull_request["url"], "--merge", "--admin", "-d"])
+    subprocess.run(
+        ["gh", "pr", "merge", pull_request["url"], "--merge", "--admin", "-d"],
+        stdout = subprocess.PIPE,
+        stderr = subprocess.PIPE,
+        universal_newlines = True
+    )
 
     # await approve_pull_request(client, params, pull_request)
     # p = params.copy()
