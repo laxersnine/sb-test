@@ -28,7 +28,7 @@ namespace SB.TechnicalTest
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine($"Hello");
+            Console.WriteLine($"Hello all");
             Console.WriteLine($"Attempt 1 Highest Safe Floor: {Attempt1()}");
             Console.WriteLine($"Attempt 1 Total Drops: {Building.TotalDrops}");
 
