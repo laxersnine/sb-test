@@ -253,8 +253,8 @@ def create_jira(pull_request):
         "fixVersions": [{"name": "R" + pull_request["baseRef"]["name"].replace("release/", "")}],
         "labels": ["automation", "merge_conflicts"]
     }
-    issue = jira.create_issue(fields=issue_data)
-    print("Created Jira issue: " + issue.key)
+    #issue = jira.create_issue(fields=issue_data)
+    print("Created Jira issue: ")# + issue.key)
 
 
 async def process_pull_request(client, params, pull_request):
