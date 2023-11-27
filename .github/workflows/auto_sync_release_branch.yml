@@ -25,6 +25,7 @@ jobs:
         run: python .github/workflows/auto_sync_release_branch/main.py
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT_REVIEW }}
           REPO_MERGED_BRANCH: ${{ format('refs/heads/{0}', github.event.pull_request.base.ref) }}
           JIRA_ACCOUNT: ${{ secrets.JIRA_ACCOUNT }}
           JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
