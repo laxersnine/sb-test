@@ -192,63 +192,70 @@ async def is_pr_mergeable(client, params, pull_request):
         case "MERGEABLE":
             print("Pull request " + str(pull_request["number"]) + " is mergeable")
             return True
-        
+
 async def approve_pull_request(client, params, pull_request):
-    p = params.copy()
-    p["pullRequestId"] = pull_request["id"]
-    approve_pull_request_query = gql(
-        """
-        mutation approvePullRequest($pullRequestId:ID!) {
-            addPullRequestReview(input: {event: APPROVE, pullRequestId: $pullRequestId}) {
-                pullRequestReview {
-                    id
-                    state
-                }
-            }
-        }
-    """
-    )
-
-    await client.execute(approve_pull_request_query, variable_values = p)
-
-async def merge_pull_request(client, params, pull_request):
-    #gh pr merge pull_request["url"] --merge --admin -d
-    result = subprocess.run(
-        ["gh", "pr", "merge", pull_request["url"], "--merge", "--admin", "-d"],
-        stdout = subprocess.PIPE,
-        stderr = subprocess.PIPE,
-        universal_newlines = True
-    )
-    
-    print(result.stdout)
-    print(result.stderr)
-
-    # await approve_pull_request(client, params, pull_request)
     # p = params.copy()
     # p["pullRequestId"] = pull_request["id"]
-    # merge_pull_request_query = gql(
+    # approve_pull_request_query = gql(
     #     """
-    #     mutation mergePullRequest($pullRequestId:ID!) {
-    #         mergePullRequest(input: {pullRequestId: $pullRequestId, mergeMethod: MERGE}) {
-    #             pullRequest {
+    #     mutation approvePullRequest($pullRequestId:ID!) {
+    #         addPullRequestReview(input: {event: APPROVE, pullRequestId: $pullRequestId}) {
+    #             pullRequestReview {
     #                 id
-    #                 number
-    #                 mergeable
-    #                 title
-    #                 url
-    #                 baseRef {
-    #                     name
-    #                 }
-    #                 headRef {
-    #                     name
-    #                 }
+    #                 state
     #             }
     #         }
     #     }
     # """
     # )
 
-    # await client.execute(merge_pull_request_query, variable_values = p)
+    # await client.execute(approve_pull_request_query, variable_values = p)
+    # Github CLI respects GH_TOKEN in env var, so we can use it for different user credentials
+    result = subprocess.run(
+        ["gh", "pr", "review", pull_request["url"], "--approve", "-b", "Approved by automation"],
+        stdout = subprocess.PIPE,
+        stderr = subprocess.PIPE,
+        universal_newlines = True
+    )
+    print(result.stdout)
+    print(result.stderr)
+
+async def merge_pull_request(client, params, pull_request):
+    #gh pr merge pull_request["url"] --merge --admin -d
+    # result = subprocess.run(
+    #     ["gh", "pr", "merge", pull_request["url"], "--merge", "--admin", "-d"],
+    #     stdout = subprocess.PIPE,
+    #     stderr = subprocess.PIPE,
+    #     universal_newlines = True
+    # )
+    # print(result.stdout)
+    # print(result.stderr)
+    await approve_pull_request(client, params, pull_request)
+    p = params.copy()
+    p["pullRequestId"] = pull_request["id"]
+    merge_pull_request_query = gql(
+        """
+        mutation mergePullRequest($pullRequestId:ID!) {
+            mergePullRequest(input: {pullRequestId: $pullRequestId, mergeMethod: MERGE}) {
+                pullRequest {
+                    id
+                    number
+                    mergeable
+                    title
+                    url
+                    baseRef {
+                        name
+                    }
+                    headRef {
+                        name
+                    }
+                }
+            }
+        }
+    """
+    )
+
+    await client.execute(merge_pull_request_query, variable_values = p)
 
 def create_jira(pull_request):
     inputs = get_inputs()
