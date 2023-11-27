@@ -211,32 +211,35 @@ async def approve_pull_request(client, params, pull_request):
     await client.execute(approve_pull_request_query, variable_values = p)
 
 async def merge_pull_request(client, params, pull_request):
-    await approve_pull_request(client, params, pull_request)
-    p = params.copy()
-    p["pullRequestId"] = pull_request["id"]
-    merge_pull_request_query = gql(
-        """
-        mutation mergePullRequest($pullRequestId:ID!) {
-            mergePullRequest(input: {pullRequestId: $pullRequestId, mergeMethod: MERGE}) {
-                pullRequest {
-                    id
-                    number
-                    mergeable
-                    title
-                    url
-                    baseRef {
-                        name
-                    }
-                    headRef {
-                        name
-                    }
-                }
-            }
-        }
-    """
-    )
+    #gh pr merge pull_request["url"] --merge --admin -d
+    subprocess.run(["gh", "pr", "merge", pull_request["url"], "--merge", "--admin", "-d"])
 
-    await client.execute(merge_pull_request_query, variable_values = p)
+    # await approve_pull_request(client, params, pull_request)
+    # p = params.copy()
+    # p["pullRequestId"] = pull_request["id"]
+    # merge_pull_request_query = gql(
+    #     """
+    #     mutation mergePullRequest($pullRequestId:ID!) {
+    #         mergePullRequest(input: {pullRequestId: $pullRequestId, mergeMethod: MERGE}) {
+    #             pullRequest {
+    #                 id
+    #                 number
+    #                 mergeable
+    #                 title
+    #                 url
+    #                 baseRef {
+    #                     name
+    #                 }
+    #                 headRef {
+    #                     name
+    #                 }
+    #             }
+    #         }
+    #     }
+    # """
+    # )
+
+    # await client.execute(merge_pull_request_query, variable_values = p)
 
 def create_jira(pull_request):
     inputs = get_inputs()
